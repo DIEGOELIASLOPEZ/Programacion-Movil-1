@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto/source/navegador.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -9,12 +8,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Proyecto Final',
+      title: 'Flutter Demo',
       theme: ThemeData(
+
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
       home: const Navegador(),
     );
   }
 }
-

@@ -1,53 +1,165 @@
 import 'package:flutter/material.dart';
-import 'dart:math';
+import 'package:proyecto/authentication/login.dart';
+import 'package:proyecto/authentication/siginup.dart';
+import 'package:proyecto/source/navegador.dart';
+import 'package:proyecto/usuario/formulario.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+
+class PrincipalUsuario extends StatefulWidget {
+  const PrincipalUsuario({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PrincipalUsuario> createState() => _PrincipalUsuarioState();
 }
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-
-      _counter++;
-    });
-  }
+class _PrincipalUsuarioState extends State<PrincipalUsuario> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Container(
+            width: double.infinity,
+            padding: EdgeInsets.symmetric(horizontal: 30, vertical: 50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 5,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/UsuarioSimbolo.png"),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Column(
+                  children: const <Widget>[
+                    Text(
+                      "Bienvenido",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 40,
+                      ),
+                    ),
+                    Text(
+                      "nombre del usuario",
+                      style: TextStyle(
+                        fontSize: 25,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
+                    Text(
+                      "Panel General - Crea o Revisa tus Denuncias",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 15,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30),
+                Column(
+                  children: <Widget>[
+                    FractionallySizedBox(
+                      widthFactor: 0.46, // 80% del ancho disponible
+                      child: MaterialButton(
+                          height: 70,
+                          color: Color(0XFF2668DF),
+                          onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => Formulario()));
+                          },
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(color: Colors.black),
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child:Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const[
+                              Icon(Icons.description,color: Color(0XFFFEF7FF),size: 30,),
+                              SizedBox( width: 10,),
+                              Text(
+                                "Crear Denuncia",
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    color: Color(0XFFFEF7FF)
+                                ),
+                              ),
+                            ],
+                          )
+                      ),
+                    ),
+                    const SizedBox(height: 50),
 
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
-      ),
-      body: Center(
+                    FractionallySizedBox(
+                      widthFactor: 0.46, // 80% del ancho disponible
+                      child: MaterialButton(
+                        height: 70,
+                        color: Color(0XFF2668DF),
+                        onPressed: () {},
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                          child:Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: const[
+                              Icon(Icons.folder,color: Color(0XFFFEF7FF),size: 30,),
+                              SizedBox( width: 10,),
+                              Text(
+                                "Ver Mis Denuncias",
+                                style: TextStyle(
+                                  fontSize: 30,
+                                    color: Color(0XFFFEF7FF)
+                                ),
+                              ),
+                            ],
+                          )
+                      ),
+                    ),
+                    const SizedBox(height: 200),
+                    FractionallySizedBox(
+                      widthFactor: 0.36, // 80% del ancho disponible
+                      child: MaterialButton(
+                        height: 70,
+                        color: Color(0XFFFEF7FF),
+                        onPressed: () {},
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child:Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const[
+                            Icon(Icons.logout),
+                            SizedBox( width: 10,),
+                            Text(
+                              "Cerrar Sesion",
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
+                        )
+                      ),
+                    ),
 
-        child: Column(
-
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+                  ],
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }

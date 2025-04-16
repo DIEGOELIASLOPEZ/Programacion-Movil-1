@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto/usuario/principal.dart';
 import 'package:proyecto/usuario/formulario.dart';
+import 'package:proyecto/authentication/bienvenido.dart';
+import 'package:proyecto/authentication/login.dart';
+import 'package:proyecto/authentication/siginup.dart';
 
 
 class Navegador extends StatefulWidget {
@@ -11,11 +14,12 @@ class Navegador extends StatefulWidget {
 }
 
 class _NavegadorState extends State<Navegador> {
-  int _p = 0;
+  int _p = 1;
 
   final List<Widget> _pantallas = [
-    const MyHomePage(title: "Pantalla Principal"),
-    const Formulario(title: "Formulario"),
+    const Bienvenido(title: "Bienvenido"),
+    const PrincipalUsuario(title: "Pantalla Principal"),
+    Formulario(),
   ];
 
   void _cambiarPantalla(int index) {
@@ -28,18 +32,6 @@ class _NavegadorState extends State<Navegador> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _pantallas[_p],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _p,
-        onTap: _cambiarPantalla,
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home), label: "Principal"
-          ),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.lock_outlined), label: "Formulario"
-          ),
-        ],
-      ),
     );
   }
 }
