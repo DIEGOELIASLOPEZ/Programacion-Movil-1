@@ -53,55 +53,50 @@ class _BienvenidoState extends State<Bienvenido> {
                 ),
                 Column(
                   children: <Widget>[
-                    MaterialButton(
-                      minWidth: 150,
-                      height: 60,
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
-                      },
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          color: Colors.black
+                    FractionallySizedBox(
+                      widthFactor: 0.8, // 80% del ancho de la pantalla
+                      child: MaterialButton(
+                        height: 60,
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => Login()));
+                        },
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(50),
                         ),
-                        borderRadius: BorderRadius.circular(50)
-                      ),
-                      child: Text(
-                        "Inicar Sesion",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          fontSize: 18
+                        child: Text(
+                          "Iniciar Sesión",
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          ),
                         ),
                       ),
-                      
                     ),
                     const SizedBox(height: 20),
-                    MaterialButton(
-                      minWidth: 150,
-                      height: 60,
-                      onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => SiginUp()));
-                      },
-                      color: Color(0XFF2668DF),
-                      shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                              color: Colors.black
-                          ),
-                          borderRadius: BorderRadius.circular(50)
-                      ),
-                      child: Text(
-                        "Registrarse",
-                        style: TextStyle(
+                    FractionallySizedBox(
+                      widthFactor: 0.8,
+                      child: MaterialButton(
+                        height: 60,
+                        color: Color(0XFF2668DF),
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => SiginUp()));
+                        },
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(color: Colors.black),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Text(
+                          "Registrarse",
+                          style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18
-
+                            fontSize: 18,
+                          ),
                         ),
                       ),
-
                     ),
                   ],
-                  
                 ),
-
 
               ],
             ),

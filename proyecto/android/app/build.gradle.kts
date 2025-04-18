@@ -1,9 +1,10 @@
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")  // Asegúrate de que esta línea esté presente
     id("kotlin-android")
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
+
 
 android {
     namespace = "com.example.proyecto"
@@ -37,6 +38,12 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+}
+
+dependencies {
+    implementation("com.google.firebase:firebase-auth:21.0.1")
+    implementation("com.google.firebase:firebase-firestore:24.0.1")
+    implementation("com.google.firebase:firebase-core:20.1.0")
 }
 
 flutter {

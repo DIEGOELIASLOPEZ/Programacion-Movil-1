@@ -3,7 +3,29 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
-class Formulario extends StatelessWidget {
+
+
+class Formulario extends StatefulWidget{
+  @override
+  _FormularioState createState() => _FormularioState();
+}
+
+class _FormularioState extends State<Formulario> {
+  final List<String> opciones = [
+    'Accidente',
+    'Arbol Caido',
+    'Alcantarillado',
+    'Bache(s)',
+    'Basura',
+    'Fuga de Gas',
+    'Fuga de Agua',
+    'Incendio',
+    'Poste Caido',
+    'Semaforo',
+    'Otro',
+  ];
+  String? selectedOpcion;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,11 +57,57 @@ class Formulario extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 40),
                 child: Column(
                   children: <Widget>[
-                    inputField(label: "Razon"),
+                    SizedBox(height: 10),
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Razon",
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                    DropdownButtonFormField<String>(
+                      value: selectedOpcion,
+                      hint: Text("Selecciona una opción"),
+                      isExpanded: true,
+                      decoration: InputDecoration(
+                        contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey),
+                        ),
+                      ),
+                      items: opciones.map(buildMenuItem).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedOpcion = value;
+                        });
+                      },
+                    ),
+
+
                     inputField(label: "Direccion"),
                     inputField(label: "Fecha-Hora"),
-                    inputField(label: "Fotografia o Video"),
-                    inputField(label: "Descripción"),
+                    inputField(label: "Fotografía o Video"),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "Descripción",
+                          style: TextStyle(
+                            fontSize: 15,
+                          ),
+                        ),
+                        const SizedBox(height: 8), // Espacio entre el texto y el campo
+                        TextField(
+                          maxLines: 5,
+                          decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ],
+                    ),
                     SizedBox(height: 20),
                     Container(
                       padding: EdgeInsets.only(top: 3, left: 3),
@@ -73,10 +141,7 @@ class Formulario extends StatelessWidget {
               ),
               SizedBox(height: 30),
               Container(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height / 3.5,
+                height: MediaQuery.of(context).size.height / 3.5,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/FormularioImagen.png"),
@@ -91,39 +156,37 @@ class Formulario extends StatelessWidget {
       ),
     );
   }
+
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+    value: item,
+    child: Text(
+      item,
+      style: TextStyle(fontSize: 18),
+    ),
+  );
 }
 
-Widget inputField({label, obscureText = false}) {
+Widget inputField({required String label, bool obscureText = false}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: <Widget>[
       Text(
         label,
         style: TextStyle(
-            fontSize: 15,
-            fontWeight: FontWeight.w400,
-            color: Colors.black87
-        ),
+            fontSize: 15, fontWeight: FontWeight.w400, color: Colors.black87),
       ),
-      SizedBox(
-        height: 5,
-      ),
+      SizedBox(height: 5),
       TextField(
         obscureText: obscureText,
         decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 0,
-                horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                  color: Colors.grey
-              ),
-            ),
-            border: OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.grey)
-            )
+          contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.grey),
+          ),
+          border: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
         ),
       ),
-      SizedBox(height: 10,)
+      SizedBox(height: 10),
     ],
   );
 }

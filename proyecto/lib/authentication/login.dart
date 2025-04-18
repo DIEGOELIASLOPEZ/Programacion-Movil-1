@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:proyecto/authentication/siginup.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 
 class Login extends StatelessWidget {
+  TextEditingController curp = TextEditingController();
+  TextEditingController password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,38 +58,72 @@ class Login extends StatelessWidget {
                 ),
                     Padding(padding:
                     EdgeInsets.symmetric(horizontal: 40),
-                      child: Container(
-                        padding: EdgeInsets.only(top: 3,left: 3),
-                        decoration:
-                        BoxDecoration(
+                      child:
+                      Container(
+                        padding: EdgeInsets.only(top: 3, left: 3),
+                        decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(50),
-                          border: Border(
-                            bottom: BorderSide(color: Colors.black),
-                            top: BorderSide(color: Colors.black),
-                            left: BorderSide(color: Colors.black),
-                            right: BorderSide(color: Colors.black),
-                          ),
+                          border: Border.all(color: Colors.black), // puedes simplificarlo así
                         ),
-                        child: MaterialButton(
-                          minWidth: 150,
-                          height: 60,
-                          onPressed: (){
-                            //ACION PARA INICIAR SESION
-                          },
-                          color: Color(0XFF2668DF),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50),
+                        child: FractionallySizedBox(
+                          widthFactor: 0.9, // 90% del ancho del contenedor
+                          child: MaterialButton(
+                            height: 60,
+                            onPressed: () {
+                            },
+                            color: const Color(0XFF2668DF),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: const Text(
+                              "Iniciar Sesión",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
-                          child: Text("Iniciar Sesion",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 20,
-                              color: Colors.white,
-                            ),),
                         ),
                       ),
                     ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text("¿No tienes cuenta? "),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SiginUp()),
+                        );
+                      },
+                      child: Text(
+                        "Regístrate",
+                        style: TextStyle(
+                          decoration: TextDecoration.underline,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+
+                Container(
+                  height: MediaQuery
+                      .of(context)
+                      .size
+                      .height / 2.5,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage("assets/login.png"),
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+
 
               ],
             ),
